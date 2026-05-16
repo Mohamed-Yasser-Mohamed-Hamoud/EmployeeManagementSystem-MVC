@@ -1,0 +1,27 @@
+﻿<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+@if (TempData["Add Data"] != null)
+{
+	<h3 style="color :green"> @TempData["Add Data"]</h3>
+	<script>
+		toastr.success('@TempData["Add Data"]', "Added")
+	</script>
+}
+
+@if (TempData["Update Data"] != null)
+{
+	<h3 style="color :orange"> @TempData["Update Data"]</h3>
+
+	<script>
+		toastr.warning('@TempData["Update Data"]', "Updated")
+	</script>
+}
+
+@if (TempData["Delete Data"] != null)
+{
+	<h3 style="color :red"> @TempData["Delete Data"]</h3>
+
+	<script>
+		toastr.error('@TempData["Delete Data"]', "Deleted")
+	</script>
+}

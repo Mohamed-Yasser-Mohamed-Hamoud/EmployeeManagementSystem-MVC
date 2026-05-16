@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Item>
+@{
+	ViewData["Title"] = "Index";
+}
+
+<div class="container p-3">
+	<partial name="_Notification" />
+	<div class="row pt-4">
+		<div class="col-6">
+			<h2 class="text-primary">Item View</h2>
+		</div>
+		<div class="col-6 text-end">
+			<a class="btn btn-primary" asp-controller="Item" asp-action="New">
+				<i class="bi bi-patch-plus-fill"></i> &nbsp; Add New Item 
+			</a>
+		</div>
+	</div>
+	<table class="table table-hover">
+		<thead>
+			<tr>
+				<th scope="col">Id</th>
+				<th scope="col">Name</th>
+				<th scope="col">Price</th>
+				<th scope="col">Category</th>
+				<th scope="col">Image</th>
+
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (var item in Model)
+			{
+				<tr class="table-primary">
+					<td scope="row">@item.ID</td>
+					<td scope="row">@item.Name</td>
+					<td scope="row">@item.Price</td>
+					<td scope="row">@item.category.category_name</td>
+					<td scope="row"><img src ="~/images/@item.imgPath" style="width:48px" calss="img-thumbnail" /></td>
+
+
+					<td>
+						<a asp-controller="Item" asp-action="Edit" class="btn btn-sm btn-success" asp-route-id="@item.ID"><i class="bi bi-pencil-square"></i></a> &nbsp; &nbsp;
+						<a asp-action="Delete" asp-controller="Item" class="btn btn-sm btn-danger" asp-route-id="@item.ID"><i class="bi bi-x-circle-fill"></i></a>
+				</td>
+				</tr>
+			}
+		</tbody>
+</div>
+
+
+
+

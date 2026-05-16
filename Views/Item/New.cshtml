@@ -1,0 +1,53 @@
+﻿@model Learning.Models.Item
+
+@{
+	ViewData["Title"] = "New Item";
+}
+<form method="post" enctype="multipart/form-data">
+	<div class="border p-3 mt-4">
+		<div class="row pb-2">
+			<h2 class="text-primary"> Add New Item </h2>
+			<hr/>
+		</div>
+		<div asp-validation-summary="All"></div>
+		<div class="mb-3">
+			<label asp-for="Name"></label>
+			<input asp-for="Name" class="form-control"/>
+			<span asp-validation-for="Name" class="text-danger"></span>
+		</div>
+		<div class="mb-3">
+			<label asp-for="Price"></label>
+			<input asp-for="Price" class="form-control" />
+			<span asp-validation-for="Price" class="text-danger"></span>
+		</div>
+		<div>
+			<label asp-for="category_id"></label>
+			<select asp-for="category_id" asp-items="@ViewBag.CategoryList" class="form-control">
+			</select>
+			<span asp-validation-for="category_id" class="text-danger"></span>
+		</div>
+		<div>
+			<input asp-for="clientFile" type="file" onchange="loadFile(event)">
+			<img id="myImage" height="200" />
+		</div>
+		<hr />
+		<br />
+		<button type="submit" class="btn btn-primary" style="width:150px">Save</button>
+		<a  class="btn btn-primary" style="width:150px" asp-controller="Item" asp-action="Index">back</a>
+
+	</div>
+
+</form>
+@section Scripts{
+	<partial name="_ValidationScriptsPartial"/>
+	<script>
+		var loadFile = function(event) {
+			var reader = new FileReader();
+			reader.onload = function(){
+				var myImg = document.getElementById('myImage');
+				myImg.src = reader.result;
+			}
+			reader.readAsDataURL(event.target.files[0]);
+		};
+	</script>
+}
